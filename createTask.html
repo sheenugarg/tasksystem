@@ -1,0 +1,101 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link href="angular-datepicker.css" rel="stylesheet" type="text/css" />
+<script src="config.js"></script>
+<style>
+*
+{
+  margin: 0;
+  padding: 0;
+}
+html,body
+{
+  height:100%;
+  width:100%;
+}
+#mytaskdate datepicker
+{
+  width:50px;
+}
+.AlignDivs
+{
+  display: inline-block;
+  margin: 10px;
+}
+#container
+{
+  margin: 20px;
+  margin-top: 40px;
+}
+.positionDivs
+{
+  margin: 0 auto;
+  padding: 0;
+  width: 954px;
+  border:1px lightgrey solid;
+  background-color: lightgrey;
+}
+#heading
+{
+  background-color: black;
+  color:white;
+  padding:10px;
+}
+#Messages input
+{
+  border:0px;
+  background-color: lightgrey;
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="CreateTaskCtrl">
+  <script src="angular-datepicker.js"></script>
+  <div id="container">
+    <div class="positionDivs" id="heading">
+      <center>Add New Task</center>
+    </div>
+    <div class="positionDivs" id="Messages">
+      <center><input type="text" ng-model="CreateTaskMessage"></center>
+    </div>
+    <div class="positionDivs">
+      <div class="AlignDivs">
+        Task Name
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="mytask" ng-focus="ElementsInFocus('taskName')">
+      </div>
+      <div class="AlignDivs" ng-show="ValidateTask">
+        Please Provide Valid Task
+      </div>
+    </div>
+    <div id="mytaskdate" class="positionDivs">
+      <div class="AlignDivs">
+        Due Date
+      </div>
+      <div class="AlignDivs">
+        <datepicker>
+          <input  type="text" ng-model="mytaskdate" ng-focus="ElementsInFocus('taskDate')"/>
+        </datepicker>
+      </div>
+      <div class="AlignDivs" ng-show="ValidateDate">
+        Please Provide Task Due Date
+      </div>
+    </div>
+    <div class="positionDivs">
+      <div class="AlignDivs">
+        &nbsp;
+      </div>
+      <div class="AlignDivs">
+        <button type="button" ng-click="AddTask()">Add Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="mainmodule.js"></script>
+<script src="createTaskController.js"></script>
+<script src="createTaskService.js"></script>
+</body>
+</html>
