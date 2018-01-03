@@ -1,0 +1,170 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link href="angular-datepicker.css" rel="stylesheet" type="text/css" />
+<script src="config.js"></script>
+<style>
+*
+{
+  margin:0;
+  padding: 0;
+}
+html,body
+{
+  height:100%;
+}
+#container1,#container2
+{
+  width:100%;
+  display: block;
+}
+#container4
+{
+  width:954px;
+  margin: 0 auto;
+  padding:0;
+}
+#block1,#block3,#block6,#block7,#block8
+{
+  display: inline-block;
+}
+.AlignDivs
+{
+  display: inline-block;
+  padding: 10px;
+}
+#container1
+{
+    background-color: black;
+    color:white;
+}
+#block1,#block3
+{
+  margin-left: 150px;
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+#container2
+{
+  margin-top: 20px;
+}
+#container4
+{
+  border:3px black solid;
+}
+#block9
+{
+  background-color: black;
+  color:white;
+  font-size: 20px;
+}
+#block9,#block10,#block11,#block12,#block13
+{
+  margin:20px;
+  border:2px #f5f5f0 solid;
+}
+#register_btn
+{
+  background-color: black;
+  width:100px;
+  color:white;
+  height:30px;
+  border:2px black solid;
+  border-radius: 10px;
+}
+#register_message
+{
+  border:none;
+}
+#block15{
+  border:1px black solid;
+  font-size:20px;
+}
+#block15 input{
+  color:red;
+}
+#login_msg input{
+  border:none;
+  background-color: black;
+  color:white;
+}
+</style>
+<body>
+<div ng-app="myApp" ng-controller="RegisterCtrl" ng-cloak>
+  <script src="angular-datepicker.js"></script>
+  <div id="container1">
+    <div id="block1">
+      TASK SYSTEM
+    </div>
+    <div id="block3">
+      <div id="login_msg" ng-show="login_msg">
+        <center><input type="text" ng-model="login_error_description"></center>
+      </div>
+      <div id="block5">
+        <div id="block6">
+            <input type="email" ng-model="login_email" placeholder="email address" ng-focus="ElementsInFocus('login_email')">
+        </div>
+        <div id="block7">
+          <input type="password" ng-model="login_password" placeholder="password" ng-focus="ElementsInFocus('login_password')">
+        </div>
+        <div id="block8">
+          <button type="button" ng-click="login()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="container2">
+    <div id="container4">
+      <div id="block9">
+        <center><b>SIGN UP</b></center>
+      </div>
+      <div id="block15" ng-show="Register_msg">
+        <center><input type="text" id="register_message" ng-model="register_message" ng-readonly="true"></center>
+      </div>
+      <div id="block10">
+        <div class="AlignDivs">
+          <label for="user_email">Email Address</label>
+        </div>
+        <div class="AlignDivs">
+          <input type="email" id="user_email" ng-model="user_email" ng-focus="ElementsInFocus('register_email')" ng-blur="ElementsBlur('register_email')">
+        </div>
+        <div class="AlignDivs" ng-show="error_email">
+          Please Provide Valid Email
+        </div>
+      </div>
+      <div id="block11">
+        <div class="AlignDivs">
+          <label for="user_password">Password</label>
+        </div>
+        <div class="AlignDivs">
+          <input type="password" id="user_password" ng-model="user_password" ng-focus="ElementsInFocus('register_password')">
+        </div>
+        <div class="AlignDivs" ng-show="error_password">
+          Please Provide Password
+        </div>
+      </div>
+      <div id="block12">
+        <div class="AlignDivs">
+          <label for="user_confirm_password">Confirm Password</label>
+        </div>
+        <div class="AlignDivs">
+          <input type="password" id="user_confirm_password" ng-model="user_confirm_password" ng-focus="ElementsInFocus('register_confirm_password')">
+        </div>
+        <div class="AlignDivs" ng-show="error_confirm_password">
+          Please Confirm Valid Password
+        </div>
+      </div>
+      <div id="block13">
+        <div class="AlignDivs">
+        </div>
+        <div class="AlignDivs">
+          <button type="button" ng-click="signup()" id="register_btn">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="mainmodule.js"></script>
+<script src="registerController.js"></script>
+<script src="registerService.js"></script>
+</body>
+</html>

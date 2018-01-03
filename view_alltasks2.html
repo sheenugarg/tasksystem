@@ -1,0 +1,117 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link href="angular-datepicker.css" rel="stylesheet" type="text/css" />
+<script src="config.js"></script>
+<style>
+*
+{
+  margin:0;
+  padding: 0;
+}
+html,body
+{
+  height:100%;
+}
+.AlignDivs
+{
+  display: inline-block;
+  margin: 10px;
+}
+table{
+  border-spacing:10px;
+}
+img
+{
+  height:20px;
+}
+th,#heading
+{background: #CCC}
+#editDiv
+{
+  margin:40px;
+  border:2px black solid;
+}
+#UpdateTask
+{
+  background-color: #CCC;
+  color: white;
+}
+.complete
+{
+  color:grey;
+}
+.overdue
+{
+  color:red;
+}
+.normal
+{
+  color:black;
+}
+</style>
+<body>
+<div ng-app="myApp" ng-controller="ViewTaskCtrl" ng-cloak>
+  <script src="angular-datepicker.js"></script>
+  <div ng-show="editDiv" id="editDiv">
+    <div id="heading">
+      Update New Task Name
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Task Id
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskId" readonly>
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Original Task Name
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskName" readonly>
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Task Name
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskNewName">
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        <button type="button" ng-click="UpdateTask()" id="UpdateTask">Update Task</button>
+      </div>
+      <div class="AlignDivs">
+          <button type="button" ng-click="CancelTask()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Task Id</th>
+        <th>Task Name</th>
+        <th>Task Date</th>
+        <th>Mark Task As Complete</th>
+        <th>Edit Task</th>
+        <th>Delete Task</th>
+      </tr>
+      <tr ng-repeat="task in alltasks" class="{{getTaskStatus(task.date,task.status)}}">
+        <td>{{task._id}}</td>
+        <td>{{task.task}}</td>
+        <td>{{task.date|date}}</td>
+        <td><input type="checkbox" ng-click="ChangeTaskStatus(task._id)" ng-disabled="{{task.status}}"></td>
+        <td><img src="edit.png" ng-click="EditTask(task._id,task.task)"></td>
+        <td><img src="delete.png" ng-click="DeleteTask(task._id)"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script src="mainmodule.js"></script>
+<script src="viewTasksController.js"></script>
+<script src="viewTaskService.js"></script>
+</body>
+</html>

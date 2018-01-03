@@ -1,0 +1,151 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<link href="angular-datepicker.css" rel="stylesheet" type="text/css" />
+<script src="config.js"></script>
+<style>
+*
+{
+  margin:0;
+  padding: 0;
+}
+html,body
+{
+  height:100%;
+}
+.AlignDivs
+{
+  display: inline-block;
+  margin: 10px;
+}
+table{
+  border-spacing:10px;
+}
+img
+{
+  height:20px;
+}
+td:nth-child(even),th,#heading
+{background: #CCC}
+#editDiv
+{
+  margin:40px;
+  border:2px black solid;
+}
+#UpdateTask
+{
+  background-color: #CCC;
+  color: white;
+}
+.complete
+{
+  background-color:yellow;
+}
+.overdue
+{
+  color:red;
+}
+.normal
+{
+  color:black;
+}
+</style>
+<body>
+<div ng-app="myApp" ng-controller="ViewTaskCtrl" ng-cloak>
+  <script src="angular-datepicker.js"></script>
+  <div ng-show="editDiv" id="editDiv">
+    <div id="heading">
+      Update New Task Name
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Task Id
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskId" readonly>
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Original Task Name
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskName" readonly>
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        Task Name
+      </div>
+      <div class="AlignDivs">
+        <input type="text" ng-model="EditTaskNewName">
+      </div>
+    </div>
+    <div>
+      <div class="AlignDivs">
+        <button type="button" ng-click="UpdateTask()" id="UpdateTask">Update Task</button>
+      </div>
+      <div class="AlignDivs">
+          <button type="button" ng-click="CancelTask()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div class="AlignDivs">
+        Task Id
+      </div>
+      <div class="AlignDivs">
+        Task Name
+      </div>
+      <div class="AlignDivs">
+        Task Date
+      </div>
+      <div class="AlignDivs">
+        Mark Task As Complete
+      </div>
+      <div class="AlignDivs">
+        Edit Task
+      </div>
+      <div class="AlignDivs">
+        Delete Task
+      </div>
+    </div>
+    <div>
+      <div ng-repeat="task in alltasks" class="{{myclass}}">
+        <div class="AlignDivs">{{task._id}}</div>
+        <div class="AlignDivs">{{task.task}}</div>
+        <div class="AlignDivs">{{task.date|date}}</div>
+        <div class="AlignDivs"><input type="checkbox" ng-click="ChangeTaskStatus(task._id)"></div>
+        <div class="AlignDivs"><img src="edit.png" ng-click="EditTask(task._id,task.task)"></div>
+        <div class="AlignDivs"><img src="delete.png" ng-click="DeleteTask(task._id)"></div>
+        <div class="AlignDivs">{{task.status}}</div>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>Task Id</th>
+        <th>Task Name</th>
+        <th>Task Date</th>
+        <th>Mark Task As Complete</th>
+        <th>Edit Task</th>
+        <th>Delete Task</th>
+      </tr>
+      <tr ng-repeat="task in alltasks" class="{{myclass}}">
+        <td ng-class="complete">{{task._id}}</td>
+        <td>{{task.task}}</td>
+        <td>{{task.date|date}}</td>
+        <td><input type="checkbox" ng-click="ChangeTaskStatus(task._id)"></td>
+        <td><img src="edit.png" ng-click="EditTask(task._id,task.task)"></td>
+        <td><img src="delete.png" ng-click="DeleteTask(task._id)"></td>
+        <td>{{task.status}}</td>
+      </tr>
+    </table>
+    <w3-test-directive></w3-test-directive>
+  </div>
+</div>
+<script src="mainmodule.js"></script>
+<script src="confirmationDirective.js"></script>
+<script src="viewTasksController.js"></script>
+<script src="viewTaskService.js"></script>
+</body>
+</html>
